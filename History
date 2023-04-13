@@ -1,0 +1,552 @@
+    1  cd Downloads/opencv-4.6.0/build/
+    2  cmake ..
+    3  make
+    4  python3
+    5  sudo make install
+    6  cd lib/python3
+    7  python3
+    8  cd
+    9  cd JetsonMULE/
+   10  ls
+   11  gedit CSI_Camera.py
+   12  python3 CSI_Camera.py 
+   13  sudo apt-get install libcanberra-gtk-module
+   14  python3 CSI_Camera.py 
+   15  gedit pose_estimation.py
+   16  python3 pose_estimation.py 
+   17  gedit utils.py
+   18  python3 pose_estimation.py 
+   19  python3
+   20  cd ..
+   21  cd Downloads/
+   22  python3
+   23  ls
+   24  cd opencv-4.6.0/
+   25  cd build
+   26  python3
+   27  cd
+   28  cd JetsonMULE/
+   29  python3 CSI_Camera.py 
+   30  python3
+   31  cd
+   32  cd Downloads/
+   33  cd opencv-4.6.0/
+   34  cd build
+   35  cmake
+   36  cmake ..
+   37  make
+   38  sudo make install
+   39  python3
+   40  python3 --version
+   41  sudo make altinstall
+   42  cd
+   43  cd Downloads/
+   44  ls
+   45  cd Python-3.7.4/
+   46  ./configure --enable-optimization
+   47  make -j 4
+   48  sudo make altinstall
+   49  python3 --version
+   50  python3.7--version
+   51  python3.7 --version
+   52  cd
+   53  python3.7
+   54  python3
+   55  python
+   56  cd JetsonMULE/
+   57  python CSI_Camera.py 
+   58  python pose_estimation.py 
+   59  gedit pose_estimation.py 
+   60  ls
+   61  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+   62  gedit pose_estimation.py 
+   63  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+   64  gedit pose_estimation.py 
+   65  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+   66  sudo apt-get install smbus
+   67  sudo apt-get install python smbus
+   68  sudo apt-get install python-smbus
+   69  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+   70  python CSI_Camera.py 
+   71  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+   72  gedit pose_estimation.py 
+   73  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+   74  cd
+   75  cd Documents/
+   76  mkdir Aruco_Example
+   77  python3 generate_aruco_tags.py
+   78  gedit generate_aruco_tags.py
+   79  mkdir Images
+   80  python generate_auco_tags.py --id 24 --type DICT_5X5_100 --ouput tags/
+   81  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --ouput tags/
+   82  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+   83  gedit generate_aruco_tags.py 
+   84  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+   85  python3 generate_aruco_tags.py 
+   86  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+   87  gedit
+   88  gedit generate_aruco_tags.py 
+   89  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+   90  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output Images/
+   91  gedit generate_aruco_tags.py 
+   92  gedit utils.py
+   93  gedit generate_aruco_tags.py 
+   94  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output Images/
+   95  ls
+   96  cd Images
+   97  ls
+   98  cd ..
+   99  gedit utils.py 
+  100  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output Images/
+  101  cd Aruco_Example/
+  102  git clone https://github.com/GSNCodes/ArUCo-Markers-Pose-Estimation-Generation-Python.git
+  103  ls
+  104  cd ArUCo-Markers-Pose-Estimation-Generation-Python/
+  105  ls
+  106  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+  107  gedit generate_aruco_tags.py 
+  108  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+  109  gedit generate_aruco_tags.py 
+  110  python generate_aruco_tags.py --id 24 --type DICT_5X5_100 --output tags/
+  111  ls
+  112  python detect_aruco_video.py --type DICT_5X5_100 --camera True
+  113  gedit detect_aruco_video.py 
+  114  python detect_aruco_video.py --type DICT_5X5_100 --camera True
+  115  cd 
+  116  cd JetsonMULE/
+  117  ls
+  118  cd
+  119  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  120  ls
+  121  gedit detect_aruco_video.py 
+  122  python detect_aruco_video.py --type DICT_5X5_100 --camera True
+  123  gedit detect_aruco_video.py 
+  124  python detect_aruco_video.py --type DICT_5X5_100 --camera True
+  125  gedit detect_aruco_video.py 
+  126  python detect_aruco_video.py --type DICT_5X5_100 --camera True
+  127  gedit calibration.py
+  128  nvgstcapture-1.0
+  129  gedit calibration.py
+  130  python calibration.py --dir Calibration/ --square_size 0.0254
+  131  gedit
+  132  gedit calibration
+  133  gedit calibration.py 
+  134  cd Calibration/
+  135  nvgstcapture-1.0
+  136  cd ..
+  137  python calibration.py 
+  138  python calibration.py --dir Calibration/ --square_size 0.0254
+  139  cd ..
+  140  cd ArUCo-Markers-Pose-Estimation-Generation-Python/
+  141  gedit calibration.py 
+  142  python calibration.py --dir Calibration/ --square_size 0.0254
+  143  python pose_estimation.py --K_Matrix calibration_matrix.npy --d_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  144  gedit pose_estimation.py 
+  145  python pose_estimation.py --K_Matrix calibration_matrix.npy --d_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  146  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  147  gedit pose_estimation.py 
+  148  python detect_aruco_video.py --type DICT_5X5_100 --camera True
+  149  python pose_estimation.py --help
+  150  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  151  gedit pose_estimation.py 
+  152  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  153  gedit pose_estimation.py 
+  154  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  155  gedit pose_estimation.py 
+  156  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  157  gedit pose_estimation.py 
+  158  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  159  cd
+  160  cd JetsonMULE/
+  161  python pose_estimation.py 
+  162  gedit pose_estimation.py 
+  163  python pose_estimation.py 
+  164  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  165  python pose_estimation.py 
+  166  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  167  cd ..
+  168  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  169  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  170  gedit 
+  171  gedit pose_estimation.py 
+  172  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  173  nvgstcapture-1.0
+  174  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  175  cd
+  176  cd JetsonMULE/
+  177  cd
+  178  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  179  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  180  cd
+  181  cd JetsonMULE/
+  182  gedit pose_estimation.py 
+  183  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  184  cd
+  185  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  186  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  187  cd
+  188  cd JetsonMULE/
+  189  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  190  python /home/mule/JetsonMULE/pose_estimation.py
+  191  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100 
+  192  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  193  ls
+  194  cd Calibration/
+  195  nvgstcapture --orientation=3
+  196  nvgstcapture --help
+  197  nvgstcapture --orientation=3 --video-res=3
+  198  nvgstcapture --orientation=3 --video-res=2
+  199  nvgstcapture --orientation=3 --video-res=1
+  200  nvgstcapture --orientation=3 --video-res=4
+  201  nvgstcapture --orientation=3 --video-res=4 --image-res=4
+  202  nvgstcapture --orientation=3 --video-res=4 --image-res=4 --prev-res=3
+  203  nvgstcapture --orientation=3 --video-res=4 --image-res=4 --prev-res=2
+  204  nvgstcapture --orientation=3 --video-res=4 --image-res=4 --prev-res=1
+  205  nvgstcapture --orientation=3 --cus-prev-res=1280x720
+  206  nvgstcapture --orientation=3 --cus-prev-res=640x360
+  207  nvgstcapture --orientation=3 --cus-prev-res=320x180
+  208  nvgstcapture --orientation=3
+  209  nvgstcapture --orientation=3 --prev-res=2
+  210  nvgstcapture --orientation=3 --prev-res=3
+  211  nvgstcapture --orientation=3 --image-res=3
+  212  cd ..
+  213  python calibration.py 
+  214  python calibration.py -d Calibration/
+  215  cd Calibration/
+  216  nvgstcapture --orientation=3 --image-res=3 --prev-res=3
+  217  nvgstcapture --orientation=3 --image-res=3 --cus-prev-res=720X1280
+  218  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/Calibration/
+  219  nvgstcapture --orientation=0 --image-res=3
+  220  cd
+  221  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  222  python calibration.py 
+  223  python calibration.py -d Calibration/
+  224  gedit calibration.py 
+  225  python calibration.py -d Calibration/
+  226  gedit calibration.py 
+  227  python calibration.py -d Calibration/
+  228  gedit calibration.py 
+  229  python calibration.py -d Calibration/
+  230  cd Calibration/
+  231  nvgstcapture-1.0
+  232  cd ..
+  233  python calibration.py 
+  234  python calibration.py -d Calibration/
+  235  gedit calibration.py 
+  236  python calibration.py -d Calibration/
+  237  gedit calibration.py 
+  238  python calibration.py -d Calibration/
+  239  nvgstcapture --orientation=0 --image-res=3
+  240  python calibration.py -d Calibration/
+  241  nvgstcapture --orientation=0 --image-res=3
+  242  python calibration.py -d Calibration/
+  243  gedit calibration.py 
+  244  python calibration.py -d Calibration/
+  245  nvgstcapture-1.0
+  246  python calibration.py -d Calibration/
+  247  gedit calibration.py 
+  248  python calibration.py -d Calibration/
+  249  gedit calibration.py 
+  250  python calibration.py -d Calibration/
+  251  cd Calibration/
+  252  nvgstcapture-1.0
+  253  cd ..
+  254  python calibration.py 
+  255  python calibration.py -d Calibration/
+  256  cd
+  257  cd JetsonMULE/
+  258  python pose_estimation.py --help
+  259  python --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  260  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  261  cd
+  262  cd Documents/Aruco_Example/ArUCo-Markers-Pose-Estimation-Generation-Python/
+  263  python calibration.py 
+  264  python calibration.py --dir Calibration/
+  265  gedit calibration.py 
+  266  python calibration.py --dir Calibration/
+  267  cd
+  268  cd JetsonMULE/
+  269  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  270  ifconfig
+  271  ls
+  272  cd JetsonMULE/
+  273  exit() ls
+  274  cd JetsonMULE/
+  275  python pose_estimation.py 
+  276  ps -ef
+  277  cd
+  278  which
+  279  cd ~/.config/autostart
+  280  ls
+  281  rm pose_estimation.py.desktop 
+  282  sudo reboot
+  283  cd JetsonMULE/
+  284  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  285  sudo shutdown
+  286  sudo shutdown -r now
+  287  cd JetsonMULE/
+  288  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  289  cd JetsonMULE/
+  290  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  291  gedit pose_estimation.py 
+  292  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  293  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100cd
+  294  cd
+  295  ls
+  296  python CSI_Camera.py 
+  297  cd JetsonMULE/
+  298  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  299  sudo python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  300  clear
+  301  hi
+  302  python pose_estimation.py 
+  303  cd
+  304  python CSI_Camera.py 
+  305  DISPLAY=`echo $DISPLAY | sed 's/^[^:]*\(.*\)/172.17.0.1\1/'`
+  306  DISPLAY=`echo $DISPLAY | sed 's/^[^:]*\(.*\)/172.17.0.1\1/'`
+  307  cd ../..
+  308  cd etc
+  309  ls
+  310  cd ssh/
+  311  ls
+  312  gedit sshd_config 
+  313  sudo gedit sshd_config 
+  314  gksudo gedit sshd_config 
+  315  sudo gedit sshd_config 
+  316  sudo chmod X11UseLocalhost no sshd_config 
+  317  sudo chmod X11UseLocalhost=no sshd_config 
+  318  sudo gedit ssh_config 
+  319  cd
+  320  cd Documents/
+  321  cd
+  322  gedit CSI_Camera.py 
+  323  sudo gedit CSI_Camera.py 
+  324  xhost local:
+  325  gedit CSI_Camera.py 
+  326  python CSI_Camera.py 
+  327  cd JetsonMULE/
+  328  cd
+  329  gedit CSI_Camera.py 
+  330  cd JetsonMULE/
+  331  python pose_estimation.py --K_matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  332  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  333  gedit pose_estimation.py 
+  334  nano pose_estimation.py 
+  335  vim pose_estimation.py 
+  336  cd
+  337  vimtutor
+  338  sudo shutdown -r now
+  339  sudo shutdown now
+  340  cd JetsonMULE/
+  341  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  342  vim pose_estimation.py 
+  343  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  344  vim pose_estimation.py 
+  345  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  346  vim pose_estimation.py 
+  347  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  348  vim pose_estimation.py 
+  349  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  350  vim pose_estimation.py 
+  351  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  352  vim pose_estimation.py 
+  353  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  354  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  355  cd JetsonMULE/
+  356  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  357  sudo reboot
+  358  mkdir I2C_Example
+  359  cd I
+  360  cd I2C_Example/
+  361  gedit I2C_Example.py
+  362  python I2C_Example.py 
+  363  i2cdetect
+  364  i2cdetect -y -r 0:
+  365  i2cdetect -y
+  366  i2cdetect -y -3 O
+  367  i2cdetect -y -r O
+  368  i2cdetect -y -r 0:
+  369  i2cdetect -y -r 0
+  370  python I2C_Example.py 
+  371  gedit I2C_Example.py 
+  372  python I2C_Example.py 
+  373  gedit I2C_Example.py 
+  374  python I2C_Example.py 
+  375  cd
+  376  cd JetsonMULE/
+  377  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  378  nvgstcapture-1.0
+  379  sudo restart-daemon
+  380  sudo service nvargus-daemon restart
+  381  nvgstcapture-1.0
+  382  ls ~/dev/video0
+  383  sudo reboot
+  384  nvgstcapture-1.0
+  385  cd JetsonMULE/
+  386  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  387  gedit pose_estimation.py 
+  388  cd Documents/
+  389  ls
+  390  cd I2C_Example/
+  391  ls
+  392  gedit I2C_Example.py 
+  393  gedit I2C_Detect.py
+  394  cd
+  395  cd Documents/I2C_Example/
+  396  gedit I2C_Detect.py 
+  397  cd Documents/I2C_Example/
+  398  python I2C_Example.py 
+  399  python I2C_Detect.py 
+  400  sudo i2cdetect -y -r 0
+  401  sudo i2cdetect -y -r 1
+  402  sudo i2cdetect -y -r 2
+  403  sudo i2cdetect -y -r 0
+  404  sudo i2cdetect -y -r 1
+  405  sudo i2cdetect -y -r 2
+  406  sudo i2cdetect -y -r 3
+  407  sudo i2cdetect -y -r 0
+  408  sudo i2cdetect -y -r 1
+  409  sudo i2cdetect -y -r 2
+  410  i2cdetect -y -r 0
+  411  i2cdetect -y -r 1
+  412  i2cdetect -y -r 2
+  413  i2cdetect -y -r 0
+  414  python I2C_Detect.py 
+  415  cd
+  416  cd JetsonMULE/
+  417  gedit pose_estimation.py 
+  418  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  419  clear
+  420  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  421  gedit pose_estimation.py 
+  422  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  423  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  424  cd JetsonMULE/
+  425  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  426  exit
+  427  cd JetsonMULE/
+  428  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  429  sudo reboot
+  430  cd JetsonMULE/
+  431  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  432  i2cdetect -y -r 0
+  433  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  434  sudo reboot
+  435  cd JetsonMULE/
+  436  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  437  i2cdetect -y -r 0
+  438  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  439  i2cdetect -y -r 0
+  440  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  441  i2cdetect -y -r 0
+  442  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  443  i2cdetect -y -r 0
+  444  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  445  cd JetsonMULE/
+  446  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  447  sudo shutdown -now
+  448  sudo shutdown --help
+  449  sudo shutdown
+  450  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  451  sudo shutdown
+  452  cd JetsonMULE/
+  453  vim pose_estimation.py 
+  454  sudo reboot
+  455  cd JetsonMULE/
+  456  vim pose_estimation.py 
+  457  sudo reboot
+  458  cd JetsonMULE/
+  459  ls
+  460  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  461  vim pose_estimation.py 
+  462  cd JetsonMULE/
+  463  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  464  vim pose_estimation.py 
+  465  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  466  sudo reboot
+  467  cd JetsonMULE/
+  468  vim pose_estimation.py 
+  469  sudo reboot -r
+  470  sudo reboot --help
+  471  sudo reboot
+  472  cd JetsonMULE/
+  473  vim pose_estimation.py 
+  474  python /home/mule/JetsonMULE/pose_estimation.py --K_Matrix /home/mule/JetsonMULE/calibration_matrix.npy --D_Coeff /home/mule/JetsonMULE/distortion_coefficients.npy --type DICT_5X5_100
+  475  sudo shutdown --help
+  476  sudo shutdown -r
+  477  ifconfig
+  478  cd JetsonMULE/
+  479  nvgstcapture
+  480  ncgstcapture-1.0
+  481  nvgstcapture-1.0
+  482  sudo reboot
+  483  CD JetsonMULE/
+  484  cd JetsonMULE/
+  485  python CSI_Camera.py 
+  486  ls
+  487  sudo service nvargus-daemon restart
+  488  python3 CSI_Camera.py 
+  489  sudo service nvargus-daemon restart
+  490  nvgstcapture-1.0
+  491  ls /dev/video0
+  492  sudo reboot
+  493  nvgstcapture-1.0
+  494  cd JetsonMULE/
+  495  python3 CSI_Camera.py 
+  496  python pose_estimation.py 
+  497  gedit pose_estimation.py 
+  498  python pose_estimation.py 
+  499  gedit pose_estimation.py 
+  500  ls
+  501  gedit pose_estimation.py 
+  502  python pose_estimation.py 
+  503  gedit pose_estimation.py 
+  504  python pose_estimation.py 
+  505  gedit pose_estimation.py 
+  506  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  507  gedit pose_estimation.py 
+  508  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  509  gedit pose_estimation.py 
+  510  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  511  gedit pose_estimation.py 
+  512  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  513  gedit pose_estimation.py 
+  514  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  515  python CSI_Camera.py 
+  516  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  517  python CSI_Camera.py 
+  518  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  519  gedit pose_estimation.py 
+  520  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  521  python CSI_Camera.py 
+  522  sudo service nvargus-daemon restart
+  523  python CSI_Camera.py 
+  524  sudo reboot
+  525  end python
+  526  python end
+  527  cd JetsonMULE/
+  528  python pose_estimation.py 
+  529  python end pose_estimation.py 
+  530  exit()
+  531  sudo reboot
+  532  cd JetsonMULE/
+  533  gedit pose_estimation.py 
+  534  cd JetsonMULE/
+  535  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  536  gedit pose_estimation.py 
+  537  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  538  python --version
+  539  numpy --version
+  540  python
+  541  python3 --version
+  542  pip install opencv-contrib-python
+  543  pip3 install opencv-contrib-python
+  544  sudo pip install opencv-contrib-python
+  545  sudo pip3 install opencv-contrib-python
+  546  cd JetsonMULE/
+  547  gedit pose_estimation.py 
+  548  python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
+  549  gedit pose_estimation.py 
+  550  python
+  551  python 
+  552  history
