@@ -71,15 +71,13 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     return:-
     frame - The frame with the axis drawn on it
     '''
-
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     # cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
     dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
     parameters = cv2.aruco.DetectorParameters()
     detector = cv2.aruco.ArucoDetector(dictionary, parameters)
 
 
-    corners, ids, rejected_img_points = detector.detectMarkers(gray)
+    corners, ids, rejected_img_points = detector.detectMarkers(frame)
 
     if len(corners) > 0:
         for i in range(0, len(ids)):
