@@ -1,62 +1,122 @@
 '''
-Sample Command:-
-python detect_aruco_video.py --type DICT_5X5_100 --camera True
-python detect_aruco_video.py --type DICT_5X5_100 --camera False --video test_video.mp4
+Sample Usage:-
+python pose_estimation.py --K_Matrix calibration_matrix.npy --D_Coeff distortion_coefficients.npy --type DICT_5X5_100
 '''
 
+
 import numpy as np
-from utils import ARUCO_DICT, aruco_display
-import argparse
-import time
 import cv2
 import sys
+from utils import ARUCO_DICT
+import argparse
+import time
+import smbus
+import os
+import subprocess
+
+bus = smbus.SMBus(0)
+address = 0x6a
+
+I2C_Flag = False
+OFFSET_HORIZONTAL = 0 
+OFFSET_VERTICAL = 20
+OFFSET_EXTEND = 9 
+ROT_GAIN = 10
+
+def gstreamer_pipeline(
+    capture_width=640,
+    capture_height=480,
+    display_width=640,
+    display_height=480,
+    framerate=30,
+    flip_method=0,
+):
+    return (
+        "nvarguscamerasrc ! "
+        "video/x-raw(memory:NVMM), "
+        "width=(int)%d, height=(int)%d, "
+        "format=(string)NV12, framerate=(fraction)%d/1 ! "
+        "nvvidconv flip-method=%d ! "
+        "video/x-raw, width=(int)%d, height=(int)%d, format=(string)BGRx ! "
+        "videoconvert ! "
+        "video/x-raw, format=(string)BGR ! appsink"
+        % (
+            capture_width,
+            capture_height,
+            framerate,
+            flip_method,
+            display_width,
+            display_height,
+        )
+    )
 
 
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--camera", required=True, help="Set to True if using webcam")
-ap.add_argument("-v", "--video", help="Path to the video file")
-ap.add_argument("-t", "--type", type=str, default="DICT_5X5_100", help="Type of ArUCo tag to detect")
-args = vars(ap.parse_args())
+# Main Loop
+if __name__ == '__main__':
 
-if args["camera"].lower() == "true":
-	video = cv2.VideoCapture(1)
-	time.sleep(2.0)
-	
-else:
-	if args["video"] is None:
-		print("[Error] Video file location is not provided")
-		sys.exit(1)
+# Get argument inputs from the user
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-k", "--K_Matrix", default="/home/mule/JETSON/calibration_matrix.npy",  help="Path to calibration matrix (numpy file)")
+    ap.add_argument("-d", "--D_Coeff", default="/home/mule/JETSON/distortion_coefficients.npy", help="Path to distortion coefficients (numpy file)")
+    ap.add_argument("-t", "--type", type=str, default="DICT_5X5_100", help="Type of ArUCo tag to detect")
+    args = vars(ap.parse_args())
+    print(args["K_Matrix"])
+    print(args["D_Coeff"])
 
-	video = cv2.VideoCapture(args["video"])
+# Verify that the selected tags are valid    
+    if ARUCO_DICT.get(args["type"], None) is None:
+        print("ArUCo tag type '{args['type']}' is not supported")
+        sys.exit(0)
 
-if ARUCO_DICT.get(args["type"], None) is None:
-	print(f"ArUCo tag type '{args['type']}' is not supported")
-	sys.exit(0)
+# Define variables 
+    aruco_dict_type = "DICT_5X5_100"
+    calibration_matrix_path = "/home/mule/JETSON/calibration_matrix.npy"
+    distortion_coefficients_path = "/home/mule/JETSON/distortion_coefficients.npy"
+    
+# Load the calibration and distortion coefficients matrices
+    k = np.load(calibration_matrix_path)
+    d = np.load(distortion_coefficients_path)
 
-# arucoDict = cv2.aruco.Dictionary_get(ARUCO_DICT[args["type"]])
-# arucoParams = cv2.aruco.DetectorParameters_create()
+# Main while loop that will never be broken
+##### Start of Main Loop #####
+    while True:
+        video = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
+        time.sleep(2.0)
 
-while True:
-	ret, frame = video.read()
-	
-	if ret is False:
-		break
+        while True:
+            ret, frame = video.read()
+
+            if not ret:
+                break
+###################################################        
+
+            # cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
+            dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
+            parameters = cv2.aruco.DetectorParameters()
+            detector = cv2.aruco.ArucoDetector(dictionary, parameters)
 
 
-	h, w, _ = frame.shape
+            corners, ids, rejected_img_points = detector.detectMarkers(frame)
 
-	width=1000
-	height = int(width*(h/w))
-	frame = cv2.resize(frame, (width, height), interpolation=cv2.INTER_CUBIC)
-	corners, ids, rejected = cv2.aruco.detectMarkers(frame, arucoDict, parameters=arucoParams)
+            if len(corners) > 0:
+                for i in range(0, len(ids)):
+                    rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners, 0.02, k, d)
+                    # Estimate the attitude of each marker and return the values rvet and tvec --- different
 
-	detected_markers = aruco_display(corners, ids, rejected, frame)
+                    cv2.aruco.drawDetectedMarkers(frame, corners)
+                    # from camera coeficcients
+                    (rvec-tvec).any() # get rid of that nasty numpy value array error
+                    # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
+###################################################
+            cv2.imshow('Estimated Pose', frame)
 
-	cv2.imshow("Image", detected_markers)
+            key = cv2.waitKey(1) & 0xFF
+            if I2C_Flag == False:
+                I2C_Flag = True
+                break
+            if key == ord('q'):
+                break
+##### End of Main Loop #####
 
-	key = cv2.waitKey(1) & 0xFF
-	if key == ord("q"):
-	    break
-
-cv2.destroyAllWindows()
-video.release()
+    video.release()
+    cv2.destroyAllWindows()

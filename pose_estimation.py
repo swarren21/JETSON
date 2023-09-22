@@ -24,12 +24,12 @@ OFFSET_EXTEND = 9
 ROT_GAIN = 10
 
 def gstreamer_pipeline(
-    capture_width=1280,
-    capture_height=720,
-    display_width=720,
-    display_height=1280,
-    framerate=120,
-    flip_method=3,
+    capture_width=640,
+    capture_height=480,
+    display_width=640,
+    display_height=480,
+    framerate=30,
+    flip_method=0,
 ):
     return (
         "nvarguscamerasrc ! "
@@ -105,8 +105,10 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
 
     return True
 
+# Main Loop
 if __name__ == '__main__':
 
+# Get argument inputs from the user
     ap = argparse.ArgumentParser()
     ap.add_argument("-k", "--K_Matrix", default="/home/mule/JETSON/calibration_matrix.npy",  help="Path to calibration matrix (numpy file)")
     ap.add_argument("-d", "--D_Coeff", default="/home/mule/JETSON/distortion_coefficients.npy", help="Path to distortion coefficients (numpy file)")
@@ -115,30 +117,41 @@ if __name__ == '__main__':
     print(args["K_Matrix"])
     print(args["D_Coeff"])
 
-    
+# Verify that the selected tags are valid    
     if ARUCO_DICT.get(args["type"], None) is None:
         print("ArUCo tag type '{args['type']}' is not supported")
         sys.exit(0)
 
+# Define variables 
     aruco_dict_type = ARUCO_DICT[args["type"]]
     calibration_matrix_path = args["K_Matrix"]
     distortion_coefficients_path = args["D_Coeff"]
     
+# Load the calibration and distortion coefficients matrices
     k = np.load(calibration_matrix_path)
     d = np.load(distortion_coefficients_path)
+
+# Main while loop that will never be broken
+##### Start of Main Loop #####
     while True:
+
+# Wait for auto hitch function to be enabled on the Mule
+##### Start of I2C Loop #####
         while True:
             p = subprocess.Popen(['i2cdetect','-y','-r','0'],stdout=subprocess.PIPE,)
     
             line = ""
             for i in range(0,9):
                 line = line + str(p.stdout.readline()) + '\r'
+
+# If an I2C device with address 0x6a becomes available, continue to aruco detection
             if "6a" in line:
                 print("6a")
                 break
             else:
                 print("No I2C Devices Found")
                 time.sleep(3)
+##### End of I2C Loop #####
 
         video = cv2.VideoCapture(gstreamer_pipeline(), cv2.CAP_GSTREAMER)
         time.sleep(2.0)
@@ -159,6 +172,7 @@ if __name__ == '__main__':
                 break
             if key == ord('q'):
                 break
+##### End of Main Loop #####
 
     video.release()
     cv2.destroyAllWindows()
