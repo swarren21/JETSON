@@ -18,10 +18,10 @@ bus = smbus.SMBus(0)
 address = 0x6a
 
 I2C_Flag = False
-OFFSET_HORIZONTAL = -1 
-OFFSET_VERTICAL = 10
+OFFSET_HORIZONTAL = 0 
+OFFSET_VERTICAL = 20
 OFFSET_EXTEND = 9 
-ROT_GAIN = 1
+ROT_GAIN = 10
 
 def gstreamer_pipeline(
     capture_width=1280,
@@ -73,11 +73,13 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     '''
 
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
-    parameters = cv2.aruco.DetectorParameters_create()
+    # cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
+    dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
+    parameters = cv2.aruco.DetectorParameters()
+    detector = cv2.aruco.ArucoDetector(dictionary, parameters)
 
 
-    corners, ids, rejected_img_points = cv2.aruco.detectMarkers(gray, cv2.aruco_dict,parameters=parameters)
+    corners, ids, rejected_img_points = detector.detectMarkers(gray)
 
     if len(corners) > 0:
         for i in range(0, len(ids)):
@@ -90,54 +92,25 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
             ROT = (rvec)
             TRAN = (tvec * 39.3701 * 10)
             # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
-            data = [int(ROT[0][0][0] * ROT_GAIN),int(ROT[0][0][1]) * ROT_GAIN,int(ROT[0][0][2]) * ROT_GAIN,int(TRAN[0][0][0]-TRAN[0][0][2]/5+OFFSET_VERTICAL),int(TRAN[0][0][1]-TRAN[0][0][2]+OFFSET_HORIZONTAL) * 3,int(TRAN[0][0][2])-OFFSET_EXTEND]
-#            for n in range( len(data)):
-#                if data[n] > 127:
-#                    data[n] = 127
-#                if data[n] < -128:
-#                    data[n] = -128
-#            print(data[0:])
-     
+            print(ROT[0][0][0]*ROT_GAIN)
+            print(ROT[0][0][1]*ROT_GAIN)
+            print(ROT[0][0][2]*ROT_GAIN)
+            data = [int(ROT[0][0][0] * ROT_GAIN),int(ROT[0][0][1] * ROT_GAIN),int(ROT[0][0][2] * ROT_GAIN * 180/31.41592),int(TRAN[0][0][0]-TRAN[0][0][2]/5+OFFSET_VERTICAL),int(TRAN[0][0][1]-TRAN[0][0][2]+OFFSET_HORIZONTAL) * 3,int(TRAN[0][0][2])-OFFSET_EXTEND]
 
-#            cv2.aruco.drawAxis(frame, mtx, dist, rvec, tvec, 0.1) #Draw axis
-#            cv2.aruco.drawDetectedMarkers(frame, corners) #Draw a square around the mark
             I2C_Flag = writeData(data)
-#            return I2C_Flag
+    else:
+        data = [0,0,0,0,0,0]
+        I2C_Flag = writeData(data)
  
-#            for i in range(rvec.shape[0]):
-#                frame = cv2.drawFrameAxes(frame, matrix_coefficients, distortion_coefficients, rvec[i, :, :], tvec[i, :, :],0.01)
-#                cv2.aruco.drawDetectedMarkers(frame, corners)
-        ###### DRAW ID #####
-#        cv2.putText(frame, "Id: " + str(ids), (0,64), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0),2,cv2.LINE_AA)
-
-
-        
-        ##### DRAW "NO IDS" #####
-#        cv2.putText(frame, "No Ids", (0,64), font, 1, (0,255,0),2,cv2.LINE_AA)
-
-        # If markers are detected
-#    if len(corners) > 0:
-#        for i in range(0, len(ids)):
-#            # Estimate pose of each marker and return the values rvec and tvec---(different from those of camera coefficients)
-#            rvec, tvec, markerPoints = cv2.aruco.estimatePoseSingleMarkers(corners[i], 0.02, matrix_coefficients,
-#                                                                       distortion_coefficients)
-#            # Draw a square around the markers
-#            cv2.aruco.drawDetectedMarkers(frame, corners) 
-#
-#            # Draw Axis
-#            try:
-#                frame = cv2.drawFrameAxes(frame, matrix_coefficients, distortion_coefficients, rvec[i, :, :], tvec[i, :, :],0.02)
-#            except:
-#                continue  
 
     return True
 
 if __name__ == '__main__':
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("-k", "--K_Matrix", default="calibration_matrix.npy",  help="Path to calibration matrix (numpy file)")
-    ap.add_argument("-d", "--D_Coeff", default="distortion_coefficients.npy", help="Path to distortion coefficients (numpy file)")
-    ap.add_argument("-t", "--type", type=str, default="DICT_ARUCO_ORIGINAL", help="Type of ArUCo tag to detect")
+    ap.add_argument("-k", "--K_Matrix", default="/home/mule/JETSON/calibration_matrix.npy",  help="Path to calibration matrix (numpy file)")
+    ap.add_argument("-d", "--D_Coeff", default="/home/mule/JETSON/distortion_coefficients.npy", help="Path to distortion coefficients (numpy file)")
+    ap.add_argument("-t", "--type", type=str, default="DICT_5X5_100", help="Type of ArUCo tag to detect")
     args = vars(ap.parse_args())
     print(args["K_Matrix"])
     print(args["D_Coeff"])
@@ -178,7 +151,7 @@ if __name__ == '__main__':
         
             I2C_Flag = pose_esitmation(frame, aruco_dict_type, k, d)
 
-            # cv2.imshow('Estimated Pose', frame)
+            cv2.imshow('Estimated Pose', frame)
 
             key = cv2.waitKey(1) & 0xFF
             if I2C_Flag == False:

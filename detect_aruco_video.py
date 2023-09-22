@@ -15,7 +15,7 @@ import sys
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--camera", required=True, help="Set to True if using webcam")
 ap.add_argument("-v", "--video", help="Path to the video file")
-ap.add_argument("-t", "--type", type=str, default="DICT_ARUCO_ORIGINAL", help="Type of ArUCo tag to detect")
+ap.add_argument("-t", "--type", type=str, default="DICT_5X5_100", help="Type of ArUCo tag to detect")
 args = vars(ap.parse_args())
 
 if args["camera"].lower() == "true":
@@ -33,8 +33,8 @@ if ARUCO_DICT.get(args["type"], None) is None:
 	print(f"ArUCo tag type '{args['type']}' is not supported")
 	sys.exit(0)
 
-arucoDict = cv2.aruco.Dictionary_get(ARUCO_DICT[args["type"]])
-arucoParams = cv2.aruco.DetectorParameters_create()
+# arucoDict = cv2.aruco.Dictionary_get(ARUCO_DICT[args["type"]])
+# arucoParams = cv2.aruco.DetectorParameters_create()
 
 while True:
 	ret, frame = video.read()
