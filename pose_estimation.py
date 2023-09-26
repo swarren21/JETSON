@@ -96,7 +96,7 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
             # from camera coeficcients
             (rvec-tvec).any() # get rid of that nasty numpy value array error
             ROT = (rvec)
-            TRAN = [tvec[0][0][0] * 100, tvec[0][0][1] * 1000, tvec[0][0][2] * 100]
+            TRAN = [tvec[0][0][0] +0.01228*tvec[0][0][2] - 0.0002927, tvec[0][0][1] - 0.3667 * tvec[0][0][2] + 0.052231, tvec[0][0][2]]
             print(TRAN[0:])
 
             # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
