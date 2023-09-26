@@ -55,7 +55,7 @@ def gstreamer_pipeline(
 
 def writeData(data):
     try:
-        bus.write_i2c_block_data(address, data[0], [data[1],data[2],data[4],data[3],data[5]])
+        bus.write_i2c_block_data(address, data[0], [data[1],data[2],data[3],data[4],data[5]])
         # print(data[0:])
         return True
     except:
