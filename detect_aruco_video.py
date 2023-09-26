@@ -26,8 +26,8 @@ ROT_GAIN = 10
 def gstreamer_pipeline(
     capture_width=640,
     capture_height=480,
-    display_width=640,
-    display_height=480,
+    display_width=1280,
+    display_height=720,
     framerate=30,
     flip_method=0,
 ):
@@ -85,6 +85,7 @@ if __name__ == '__main__':
 
         while True:
             ret, frame = video.read()
+            ret1, thresh = cv2.threshold(frame,100,255,cv2.THRESH_BINARY)
 
             if not ret:
                 break
@@ -92,11 +93,17 @@ if __name__ == '__main__':
 
             # cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
             dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
+            
             parameters = cv2.aruco.DetectorParameters()
+            parameters.minMarkerPerimeterRate = 0.1
+            parameters.adaptiveThreshWinSizeMin = 23
+            parameters.adaptiveThreshWinSizeMax = 23
+            parameters.adaptiveThreshWinSizeStep = 10
+            parameters.adaptiveThreshConstant = 20
+            parameters.minDistanceToBorder = 3
             detector = cv2.aruco.ArucoDetector(dictionary, parameters)
-
-
             corners, ids, rejected_img_points = detector.detectMarkers(frame)
+
 
             if len(corners) > 0:
                 for i in range(0, len(ids)):
@@ -109,6 +116,7 @@ if __name__ == '__main__':
                     # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
 ###################################################
             cv2.imshow('Estimated Pose', frame)
+            cv2.imshow('Thresh', thresh)
 
             key = cv2.waitKey(1) & 0xFF
             if I2C_Flag == False:

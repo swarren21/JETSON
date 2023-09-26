@@ -19,16 +19,18 @@ address = 0x6a
 
 I2C_Flag = False
 OFFSET_HORIZONTAL = 0 
-OFFSET_VERTICAL = 20
-OFFSET_EXTEND = 9 
+OFFSET_VERTICAL = 0
+OFFSET_EXTEND = 0 
 ROT_GAIN = 10
+HORIZONTAL_RESOLUTION = 640
+VERTICAL_RESOLUTION = 480
 
 def gstreamer_pipeline(
-    capture_width=640,
-    capture_height=480,
-    display_width=640,
-    display_height=480,
-    framerate=30,
+    capture_width=HORIZONTAL_RESOLUTION,
+    capture_height=VERTICAL_RESOLUTION,
+    display_width=HORIZONTAL_RESOLUTION,
+    display_height=VERTICAL_RESOLUTION,
+    framerate=60,
     flip_method=0,
 ):
     return (
@@ -54,7 +56,7 @@ def gstreamer_pipeline(
 def writeData(data):
     try:
         bus.write_i2c_block_data(address, data[0], [data[1],data[2],data[4],data[3],data[5]])
-        print(data[0:])
+        # print(data[0:])
         return True
     except:
         print("Send Data Failed")
@@ -74,6 +76,12 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
     # cv2.aruco_dict = cv2.aruco.Dictionary_get(aruco_dict_type)
     dictionary = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_5X5_100)
     parameters = cv2.aruco.DetectorParameters()
+    parameters.adaptiveThreshWinSizeMin = 23
+    parameters.adaptiveThreshWinSizeMax = 23
+    parameters.adaptiveThreshWinSizeStep = 10
+
+    parameters.adaptiveThreshConstant = 25
+
     detector = cv2.aruco.ArucoDetector(dictionary, parameters)
 
 
@@ -88,14 +96,13 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
             # from camera coeficcients
             (rvec-tvec).any() # get rid of that nasty numpy value array error
             ROT = (rvec)
-            TRAN = (tvec * 39.3701 * 10)
-            # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
-            print(ROT[0][0][0]*ROT_GAIN)
-            print(ROT[0][0][1]*ROT_GAIN)
-            print(ROT[0][0][2]*ROT_GAIN)
-            data = [int(ROT[0][0][0] * ROT_GAIN),int(ROT[0][0][1] * ROT_GAIN),int(ROT[0][0][2] * ROT_GAIN * 180/31.41592),int(TRAN[0][0][0]-TRAN[0][0][2]/5+OFFSET_VERTICAL),int(TRAN[0][0][1]-TRAN[0][0][2]+OFFSET_HORIZONTAL) * 3,int(TRAN[0][0][2])-OFFSET_EXTEND]
+            TRAN = [tvec[0][0][0] * 100, tvec[0][0][1] * 1000, tvec[0][0][2] * 100]
+            print(TRAN[0:])
 
+            # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
+            data = [int(ROT[0][0][0]),int(ROT[0][0][1]),int(ROT[0][0][2]),int(TRAN[0]),int(TRAN[1]),int(TRAN[2])]
             I2C_Flag = writeData(data)
+            # print(data[3:])
     else:
         data = [0,0,0,0,0,0]
         I2C_Flag = writeData(data)
