@@ -95,12 +95,12 @@ def pose_esitmation(frame, aruco_dict_type, matrix_coefficients, distortion_coef
             cv2.aruco.drawDetectedMarkers(frame, corners)
             # from camera coeficcients
             (rvec-tvec).any() # get rid of that nasty numpy value array error
-            ROT = (rvec)
-            TRAN = [(tvec[0][0][0] * 100) + 0.1216 * (tvec[0][0][2] * 100) - 0.2062, (tvec[0][0][1] * 1000) - 0.3674 * (tvec[0][0][2] * 100) + 4.8585, tvec[0][0][2]*100]
+            ROT = (rvec[0][0])
+            TRAN = [(tvec[0][0][0] * 100), (tvec[0][0][1] * 100) - (0.0297*(tvec[0][0][2]*100) + 4.2604), (tvec[0][0][2]*100)]
             print(TRAN[0:])
 
             # Data variables: [X Rot, Y Rot, Z Rot, X, Y, Z]
-            data = [int(ROT[0][0][0]),int(ROT[0][0][1]),int(ROT[0][0][2]),int(TRAN[0]),int(TRAN[1]),int(TRAN[2])]
+            data = [int(ROT[0]),int(ROT[1]),int(ROT[2]),int(TRAN[0]),int(TRAN[1]),int(TRAN[2])]
             I2C_Flag = writeData(data)
             # print(data[3:])
     else:
